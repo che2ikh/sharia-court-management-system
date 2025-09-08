@@ -2,10 +2,7 @@ package Control;
 
 import Model.DataBaseHelper;
 import Model.Person;
-import View.AddPersonPage;
-import View.CenterPanel;
-import View.PersonSearchBox;
-import View.PersonTable;
+import View.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -113,6 +110,19 @@ dataBaseHelper=new DataBaseHelper();
         centerPanel.setContent(label);
     }
 
+    public void newReportClicked(){
+        ReportMenu reportMenu=new ReportMenu(this);
+        centerPanel.setContent(reportMenu);
+    }
+
+    public void openKhula(){
+centerPanel.setContent(new Label("خلععع"));
+    }
+
+    public void openTalaq(){
+        centerPanel.setContent(new Label("طلااااق"));
+
+    }
     // Create the dashboard UI node with buttons and stats cards
 
 

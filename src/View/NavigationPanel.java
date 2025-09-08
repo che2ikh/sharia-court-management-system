@@ -25,6 +25,10 @@ public class NavigationPanel extends VBox {
         navHeader.getStyleClass().add("nav-header");
         this.getChildren().add(navHeader);
 
+        NavigationPanelButton newReportButton = new NavigationPanelButton("تقرير جديد");
+        newReportButton.setOnAction(e -> centerPanelController.newReportClicked());
+        this.getChildren().add(newReportButton);
+
         NavigationPanelButton addPerson=new NavigationPanelButton("اضافة شخص");
         addPerson.setOnAction(e ->centerPanelController.showPersonForm());
         this.getChildren().add(addPerson);

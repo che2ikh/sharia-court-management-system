@@ -88,6 +88,10 @@
     -fx-min-height: 100px;
 }
 
+ .dashboard-card:hover {
+            -fx-background-color: #2980b9;
+        }
+
 /* Dashboard Labels */
 .card-value {
     -fx-font-size: 28px;
