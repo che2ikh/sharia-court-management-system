@@ -3,6 +3,7 @@ package Control;
 import Model.DataBaseHelper;
 import Model.Person;
 import View.*;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -27,8 +28,11 @@ public class CenterPanelController {
     public CenterPanelController(CenterPanel centerPanel) {
         this.centerPanel = centerPanel;
 
-        ((Button) centerPanel.getDashBoard().getChildren().getLast()).setOnAction(e->this.generateReport());
-dataBaseHelper=new DataBaseHelper();
+        ObservableList<Node> children = centerPanel.getDashBoard().getChildren();
+        Button lastButton = (Button) children.get(children.size() - 1);
+        lastButton.setOnAction(e -> this.generateReport());
+
+        dataBaseHelper=new DataBaseHelper();
     }
 
     // Prepare and show the dashboard view
@@ -44,8 +48,12 @@ dataBaseHelper=new DataBaseHelper();
     // Show the person form view
     public void showPersonForm() {
         centerPanel.setContent(centerPanel.getPersonForm());
-        Button addPersonButton=(Button)centerPanel.getPersonForm().getChildren().getLast();
-        addPersonButton.setOnAction(e->addPersonButtonFunction());
+
+        ObservableList<Node> children = centerPanel.getPersonForm().getChildren();
+        if (!children.isEmpty()) {
+            Button addPersonButton = (Button) children.get(children.size() - 1);
+            addPersonButton.setOnAction(e -> addPersonButtonFunction());
+        }
     }
 
     public void addPersonButtonFunction() {
@@ -79,7 +87,7 @@ dataBaseHelper=new DataBaseHelper();
 
                     System.out.println(i+"تم حفظ البيانات:");
                     System.out.println("الاسم: " + name);
-                    System.out.println("الرقم الوطني: " + id);
+;                    System.out.println("الرقم الوطني: " + id);
                     System.out.println("الجنس: " + gender);
                     System.out.println("تاريخ الميلاد: " + birthdate_Day);
                     System.out.println("العنوان: " + address);
@@ -116,7 +124,8 @@ dataBaseHelper=new DataBaseHelper();
     }
 
     public void openKhula(){
-centerPanel.setContent(new Label("خلععع"));
+TemplateView templateView=new TemplateView( "C:\\Users\\Lenovo\\Documents\\Intellij Codes\\try dotx template\\my_template.docx");
+   centerPanel.setContent(templateView);
     }
 
     public void openTalaq(){

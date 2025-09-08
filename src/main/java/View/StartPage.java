@@ -41,7 +41,7 @@ private CenterPanelController centerPanelController;
         double height = bounds.getHeight() * 0.8;
 
         Scene scene = new Scene(root, width, height);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
 
         stage.centerOnScreen();
         stage.setMinWidth(800);
