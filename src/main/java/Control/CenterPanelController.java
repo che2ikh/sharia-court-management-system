@@ -15,6 +15,10 @@ import javafx.scene.layout.VBox;
 import net.sf.jasperreports.engine.*;
 import org.w3c.dom.Text;
 
+import javax.print.URIException;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -126,9 +130,17 @@ public class CenterPanelController {
         centerPanel.setContent(reportMenu);
     }
 
-    public void openKhula(){
-TemplateView templateView=new TemplateView( "C:\\Users\\Lenovo\\Documents\\Intellij Codes\\try dotx template\\my_template.docx");
-VBox.setVgrow(templateView, Priority.ALWAYS);
+    public void openKhula() {
+        File templateFile = null;
+        try {
+            templateFile = new File(getClass().getResource("/khula_template.docx").toURI());
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        TemplateView templateView = new TemplateView(templateFile.getAbsolutePath());
+
+
+        VBox.setVgrow(templateView, Priority.ALWAYS);
 centerPanel.setContent(templateView);
     }
 
