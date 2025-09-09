@@ -153,4 +153,9 @@ src.zip
 test_reports.pdf
 testdb.mv.db
 
+
+# Ignore Word/Office temp files
+~$*.docx
+
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java
