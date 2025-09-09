@@ -58,7 +58,7 @@ private CenterPanelController centerPanelController;
         root.setTop(topPanel);
         root.setRight(navPanel);
         root.setCenter(centerPanel);
-        BorderPane.setMargin(centerPanel, new javafx.geometry.Insets(20, 0, 0, 0));
+        BorderPane.setMargin(centerPanel, new javafx.geometry.Insets(0, 0, 0, 0));
     }
 
     public static void main(String[] args) {
