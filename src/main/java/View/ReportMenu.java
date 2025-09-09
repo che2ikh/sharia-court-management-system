@@ -15,6 +15,7 @@ public class ReportMenu extends VBox {
 
      super(20);
 
+
        setAlignment(Pos.TOP_CENTER);
      setPadding(new Insets(40));
         getStyleClass().add("center-panel");
