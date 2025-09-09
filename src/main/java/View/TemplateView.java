@@ -75,7 +75,11 @@ public class TemplateView extends BorderPane {
 // handle opening outputs directory
         openOutputsBtn.setOnAction(e -> {
             try {
-                File outputDir = new File("C:\\Users\\Lenovo\\Documents\\Intellij Codes\\try dotx template\\");
+// Get the current user's home directory
+                String userHome = System.getProperty("user.home");
+
+// Build path to Documents (cross-platform for Windows)
+                File outputDir = new File(userHome, "Documents/Intellij Codes/try dotx template/");
                 if (outputDir.exists()) {
                     Desktop.getDesktop().open(outputDir);
                 } else {
@@ -109,8 +113,20 @@ public class TemplateView extends BorderPane {
                 renderTextFlow(false);
 
                 // Generate DOCX
-                File template = new File("my_template.docx");
-                File output = new File("output.docx");
+                File template;
+                try {
+                    template = new File(getClass().getResource("/khula_template.docx").toURI());
+                } catch (Exception ei) {
+                    ei.printStackTrace();
+                    return;
+                }
+
+                String userHome = System.getProperty("user.home");
+                File outputDir = new File(userHome, "Documents/Intellij Codes/try dotx template/");
+                if (!outputDir.exists()) outputDir.mkdirs();
+
+                File output = new File(outputDir, "filled_template.docx");
+
                 DocxTemplateUtil.fillTemplate(template, output, placeholderValues);
                 System.out.println("DOCX generated!");
             }
