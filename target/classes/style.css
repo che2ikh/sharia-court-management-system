@@ -16,6 +16,13 @@
     -fx-font-size: 32px;
     -fx-font-weight: bold;
 }
+/*hijri label*/
+
+.hijri-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Noto Naskh Arabic", "Tahoma", "Arial";
+}
 
 /* Settings Button */
 .settings-btn {

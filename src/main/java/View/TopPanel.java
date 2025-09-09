@@ -21,6 +21,9 @@ public class TopPanel extends HBox {
         Label title = new Label("محكمة سير الشرعية");
         title.getStyleClass().add("title-label");
 
+        Label hijrahDate =new Label(HijriFormatExample.getHijrahDate());
+        hijrahDate.getStyleClass().add("hijri-label");
+
         settingsBtn = new Button("الإعدادات");
         settingsBtn.getStyleClass().add("settings-btn");
         settingsBtn.setOnAction(e-> centerPanelController.showDashboard());
@@ -28,7 +31,7 @@ public class TopPanel extends HBox {
         HBox leftSection = new HBox(settingsBtn);
         leftSection.setAlignment(Pos.CENTER_LEFT);
 
-        HBox centerSection = new HBox(); // Empty spacer
+        HBox centerSection = new HBox(hijrahDate);
         centerSection.setAlignment(Pos.CENTER);
         HBox.setHgrow(centerSection, Priority.ALWAYS);
 
