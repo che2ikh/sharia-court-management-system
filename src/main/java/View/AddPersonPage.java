@@ -139,5 +139,7 @@ public class AddPersonPage extends VBox {
 
         this.getChildren().addAll(title, form, submitBtn);
        this.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+   
+   //i made some changes
     }
 }
