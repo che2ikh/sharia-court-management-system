@@ -12,14 +12,19 @@ public class CenterPanel extends VBox {
     private final AddPersonPage personForm;
     private final VBox dashboard;
     public CenterPanel() {
-        this.setSpacing(20);
+
+        this.setSpacing(0);
+        this.setPadding(Insets.EMPTY);
+        //this.setSpacing(20);
         this.setAlignment(Pos.TOP_CENTER);
-        this.setPadding(new Insets(40));
+        //this.setPadding(new Insets(40));
         this.getStyleClass().add("center-panel");
 
         this.dashboard=Dashboard.createDashboard();
         this.personForm =new AddPersonPage();
 
+        System.out.println(this.getPadding());
+        System.out.println(this.getSpacing());
     }
 
     // Expose personForm safely

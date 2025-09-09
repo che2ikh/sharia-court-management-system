@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import net.sf.jasperreports.engine.*;
 import org.w3c.dom.Text;
@@ -24,6 +25,7 @@ public class CenterPanelController {
 
     private DataBaseHelper dataBaseHelper;
     private final CenterPanel centerPanel;
+    private ReportMenu reportMenu;
 
     public CenterPanelController(CenterPanel centerPanel) {
         this.centerPanel = centerPanel;
@@ -119,13 +121,15 @@ public class CenterPanelController {
     }
 
     public void newReportClicked(){
-        ReportMenu reportMenu=new ReportMenu(this);
+        if(reportMenu==null)
+         reportMenu=new ReportMenu(this);
         centerPanel.setContent(reportMenu);
     }
 
     public void openKhula(){
 TemplateView templateView=new TemplateView( "C:\\Users\\Lenovo\\Documents\\Intellij Codes\\try dotx template\\my_template.docx");
-   centerPanel.setContent(templateView);
+VBox.setVgrow(templateView, Priority.ALWAYS);
+centerPanel.setContent(templateView);
     }
 
     public void openTalaq(){

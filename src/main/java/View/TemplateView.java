@@ -44,8 +44,9 @@ public class TemplateView extends BorderPane {
 
         // Menu
         HBox menuBox = new HBox(10);
-        Button enableEdit = new Button("Enable Edit");
-        Button stopEdit = new Button("Stop Edit");
+        menuBox.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        Button enableEdit = new Button("تعديل");
+        Button stopEdit = new Button("حفظ");
         Button openTemplatesBtn = new Button("Show Templates");
         Button openOutputsBtn = new Button("Show Outputs");
         menuBox.getChildren().addAll(enableEdit, stopEdit);
