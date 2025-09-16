@@ -1,8 +1,7 @@
 package View;
 
 import Control.CenterPanelController;
-import Model.DataBaseHelper;
-import Model.Person;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -10,9 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.Date;
+
 
 public class StartPage extends Application {
     private  BorderPane root;
@@ -27,7 +24,7 @@ private CenterPanelController centerPanelController;
 
         // Center Panel
         centerPanel = new CenterPanel();
-        centerPanelController=new CenterPanelController(centerPanel);
+        centerPanelController=new CenterPanelController(stage,centerPanel);
         // Navigation Panel
         navPanel = new NavigationPanel(centerPanelController);
         // Top Panel

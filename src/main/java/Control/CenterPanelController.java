@@ -2,6 +2,7 @@ package Control;
 
 import Model.DataBaseHelper;
 import Model.Person;
+import TemplateFill.TemplateFillView;
 import View.*;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,11 +13,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import net.sf.jasperreports.engine.*;
+import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
 import javax.print.URIException;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
@@ -27,16 +29,17 @@ import java.util.HashMap;
 
 public class CenterPanelController {
 
+    private Stage stage;
     private DataBaseHelper dataBaseHelper;
     private final CenterPanel centerPanel;
     private ReportMenu reportMenu;
 
-    public CenterPanelController(CenterPanel centerPanel) {
+    public CenterPanelController(Stage stage,CenterPanel centerPanel) {
+        this.stage=stage;
         this.centerPanel = centerPanel;
 
         ObservableList<Node> children = centerPanel.getDashBoard().getChildren();
         Button lastButton = (Button) children.get(children.size() - 1);
-        lastButton.setOnAction(e -> this.generateReport());
 
         dataBaseHelper=new DataBaseHelper();
     }
@@ -137,7 +140,15 @@ public class CenterPanelController {
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
-        TemplateView templateView = new TemplateView(templateFile.getAbsolutePath());
+        TemplateFillView templateView = null;
+        try {
+            templateView = new TemplateFillView(stage);
+            templateView.setContent("ok.html");
+            templateView.setCurrentDocxFile("khula_template.docx");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         VBox.setVgrow(templateView, Priority.ALWAYS);
@@ -152,27 +163,6 @@ centerPanel.setContent(templateView);
 
 
     // Method to generate Jasper report
-    private void generateReport() {
-        try {
-            JasperReport report = JasperCompileManager.compileReport("src/test_reports.jrxml");
-            JasperPrint print = JasperFillManager.fillReport(report, new HashMap<>(), new JREmptyDataSource());
-            JasperExportManager.exportReportToPdfFile(print, "test_reports.pdf");
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("تم التوليد");
-            alert.setHeaderText(null);
-            alert.setContentText("تم توليد تقرير الزواج بنجاح!");
-            alert.showAndWait();
-
-        } catch (JRException ex) {
-            ex.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("خطأ");
-            alert.setHeaderText("فشل التوليد");
-            alert.setContentText("حدث خطأ أثناء توليد التقرير.");
-            alert.showAndWait();
-        }
-    }
 
     public void searchPerson() {
         PersonSearchBox personSearchBox=new PersonSearchBox();

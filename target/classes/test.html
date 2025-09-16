@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+html,css,javascrip:
+<p>My name is ... and I am ... years old.</p>
+<button onclick="replaceInputs()">Edit</button>
+
+<script>
+                function replaceInputs() {
+                    // Replace all occurrences of "..." with input fields
+                    document.body.innerHTML = document.body.innerHTML.replace(/\.{3}/g, '<input type="text" class="myInput"/>');
+                     alert("replace input");
+
+                }
+
+                // Function to collect input values
+                function getInputValues() {
+                    const inputs = document.querySelectorAll('.myInput');
+                    let values = [];
+                    inputs.forEach(input => values.push(input.value));
+                    alert("get input values ");
+
+                    return values;
+                }
+
+                  function submitValues() {
+                            const values = getInputValues();
+                            setTimeout(() => {
+                                if (window.javaApp && typeof window.javaApp.handleInputs === 'function') {
+                                    alert(values);
+                                    window.javaApp.handleInputs(values);
+                                } else {
+                                    alert("warning!!!!!!!");
+                                }
+                            }, 100); // wait 100ms
+                        }
+                </script>
+
+<button onclick="submitValues()">Submit</button>
+</body>
+</html>
