@@ -13,10 +13,32 @@ public class DataBaseHelper {
     private ResultSet resultSet;
 
 
-  public void openConnection() throws SQLException {
-      conn= DriverManager.getConnection(url,user,password);
-  }
-  public void closeConnection() throws SQLException{
+    public void openConnection() throws SQLException {
+        conn = DriverManager.getConnection(url, user, password);
+        createPersonTableIfNotExists();
+    }
+
+    // Create the table if it doesn't exist
+    private void createPersonTableIfNotExists() throws SQLException {
+        String sql = """
+        CREATE TABLE IF NOT EXISTS PERSON (
+            ID INT PRIMARY KEY AUTO_INCREMENT,
+            NAME VARCHAR(100),
+            ADDRESS VARCHAR(50),
+            GENDER VARCHAR(10),
+            BIRTHDAY_DATE DATE,
+            PHONE VARCHAR(20)
+        );
+    """;
+        try (Statement stmt = conn.createStatement()) {
+            stmt.execute(sql);
+        } catch (SQLException ex) {
+            System.out.println("Error creating PERSON table:");
+            ex.printStackTrace();
+        }
+    }
+
+    public void closeConnection() throws SQLException{
       conn.close();
   }
     public int deletePerson(int id) throws SQLException {
